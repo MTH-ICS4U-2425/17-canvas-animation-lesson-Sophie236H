@@ -4,7 +4,7 @@
  * Keep all the globals in one place, in case they
  * need to be shared across modules/imports.
  * 
- * Author:
+ * Author: Sophie Holland
  * 
  */
 
@@ -13,6 +13,15 @@ export const CANVAS = document.getElementById('game_canvas');
 export const CTX = CANVAS.getContext('2d', {
       powerPreference: "high-performance"
     });
+
+export const dino1 = new Image();
+dino1.src = "../images/dino_large.png"
+
+export const dino2 = new Image();
+dino2.src = "../images/dino_large.png"
+
+export const dino3 = new Image()
+dino3.src = "../images/dino_large.png"
   
 // FPS Trapping
 export const FPS = 60;
@@ -20,7 +29,7 @@ export const MS_PER_FRAME = 1000 / FPS;
 
 // Movement
 export const GRAVITY = 1;
-export const FLOOR = CANVAS.height;  // Careful - if the height ever changes...
+export const FLOOR = CANVAS.height - 25;  // Careful - if the height ever changes...
 
 // Some convenient keyboard codes
 export const KEYS = {
@@ -43,4 +52,4 @@ export const KEYS = {
 export function $(id) { return document.getElementById(id); }
 
 // Export all the constants by default
-export default { CANVAS, CTX, FPS, MS_PER_FRAME, GRAVITY, FLOOR, KEYS, $ }
+export default { CANVAS, CTX, FPS, MS_PER_FRAME, GRAVITY, FLOOR, KEYS, $, dino1,dino2}

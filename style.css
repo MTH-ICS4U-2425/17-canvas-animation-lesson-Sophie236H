@@ -3,7 +3,7 @@ body {
   background-color: #555555;
 
   /* To disable user interaction (copy, touch, etc) */
-  user-select: none;
+  /* user-select: none;
   touch-action: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -11,7 +11,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  outline: none;
+  outline: none; */
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 
 }
