@@ -41,7 +41,7 @@ let num2;
 let rannn;
 let animationFrameID;
 
-//Cactus images
+//Cactus images(I didn't need all these)
 let counter = 0
 let cactus1 = new Image()
 cactus1.src = "../images/dino_large.png"
@@ -96,7 +96,6 @@ function keypress(event) {
  */
 
 function update() {
-  hs = localStorage.getItem("hs")
   collision()
   counter++
   if(counter % 10 == 0){
@@ -230,8 +229,21 @@ CTX.fillText(hs, 860,35);
 
 // Start the animation
 if(counter == 0){
+  hs = localStorage.getItem("hs")
   CTX.font = "48px serif";
   CTX.fillStyle = "white"
-  CTX.fillText("PRESS SPACE TO START", 270, 100,700);}
+  CTX.fillText("PRESS SPACE TO START", 270, 100,700);
+
+  ground.onload = function() {
+    CTX.drawImage(ground,10,102,2300,23,5,300,2300,23)
+    CTX.drawImage(dino3,1943,0,86,95,25,235,95,95)
+    CTX.font = "25px serif";
+CTX.fillStyle = "white"
+CTX.fillText("HIGH SCORE", 850,35);
+CTX.fillText(hs,1020,35);
+  };
+
+
+}
 else {update()}
 
