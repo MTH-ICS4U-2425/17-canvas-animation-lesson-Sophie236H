@@ -34,6 +34,8 @@ let x = 1200
 let y = 1200
 let z = 1200
 let end = 0
+let score = 0
+let hs = 0
 let num;
 let num2;
 let rannn;
@@ -68,7 +70,7 @@ document.addEventListener("contextmenu", (event) => {
 });
 
 function collision(){
-  if(HERO.right == x || HERO.right == y){
+  if(HERO.right-30 == x || HERO.right-30 == y){
     if(HERO.bottom >= 240){
     console.log("heret")
     end = 1
@@ -81,8 +83,12 @@ function collision(){
  */
 function keypress(event) {
   if([KEYS.W, KEYS.UP_ARROW, KEYS.SPACE].includes(event.keyCode));{
+    if(counter == 0){
+      update()
+    }
     HERO.jump()
   }
+  
 }
 
 /**
@@ -90,8 +96,12 @@ function keypress(event) {
  */
 
 function update() {
+  hs = localStorage.getItem("hs")
   collision()
   counter++
+  if(counter % 10 == 0){
+    score++
+  }
   // Prepare for the next frame
   animationFrameID = requestAnimationFrame(update)
   
@@ -187,8 +197,15 @@ function update() {
   }
 
 CTX.drawImage(star,175,0,78,85,z-1,100,60,90)
+
+CTX.font = "25px serif";
+CTX.fillStyle = "white"
+CTX.fillText(score, 1035, 35,700);
+CTX.fillText("| SCORE", 930, 35,700);
+CTX.fillText("HIGH SCORE", 700,35);
+CTX.fillText(hs, 860,35);
   
-  // Draw our hero
+//The dying mechanism 
  if(end == 1){
   console.log("yayyy")
   cancelAnimationFrame(animationFrameID)
@@ -196,12 +213,25 @@ CTX.drawImage(star,175,0,78,85,z-1,100,60,90)
   y = 1200
   z = 1200
   counter = 0
-  animationFrameID = requestAnimationFrame(update)
+  CTX.font = "48px serif";
+  CTX.fillStyle = "white"
+  CTX.fillText("GAME OVER - PRESS SPACE TO RESTART", 200, 100,700);
   end = 0
+  if(score > hs){
+  hs = score
+  localStorage.setItem("hs", hs)
+  }
+  score = 0
  }
+ // Draw our hero
   HERO.update();
 
 }
 
 // Start the animation
-update()
+if(counter == 0){
+  CTX.font = "48px serif";
+  CTX.fillStyle = "white"
+  CTX.fillText("PRESS SPACE TO START", 270, 100,700);}
+else {update()}
+
