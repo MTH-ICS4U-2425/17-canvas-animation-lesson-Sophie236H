@@ -33,9 +33,11 @@ ground2.x_pos = 1200
 let x = 1200
 let y = 1200
 let z = 1200
+let end = 0
 let num;
 let num2;
 let rannn;
+let animationFrameID;
 
 //Cactus images
 let counter = 0
@@ -58,35 +60,48 @@ let frame_time = performance.now()
 // Event Listeners
 document.addEventListener("keydown", keypress);
 
+
 // Disable the context menu on the entire document
 document.addEventListener("contextmenu", (event) => { 
   event.preventDefault();
   return false; 
 });
 
+function collision(){
+  if(HERO.right == x || HERO.right == y){
+    if(HERO.bottom >= 240){
+    console.log("heret")
+    end = 1
+    }
+  }
+}
+
 /**
  * The user pressed a key on the keyboard 
  */
 function keypress(event) {
-  if([KEYS.W, KEYS.UP_ARROW, KEYS.SPACE].includes(event.keyCode)){
+  if([KEYS.W, KEYS.UP_ARROW, KEYS.SPACE].includes(event.keyCode));{
     HERO.jump()
   }
 }
 
-
 /**
  * The main game loop
  */
+
 function update() {
+  collision()
   counter++
   // Prepare for the next frame
-  requestAnimationFrame(update)
+  animationFrameID = requestAnimationFrame(update)
   
   /*** Desired FPS Trap ***/
   const NOW = performance.now()
   const TIME_PASSED = NOW - frame_time
   
-  if (TIME_PASSED < MS_PER_FRAME) return
+  if (TIME_PASSED < MS_PER_FRAME) {
+    return
+  }
   
   const EXCESS_TIME = TIME_PASSED % MS_PER_FRAME
   frame_time = NOW - EXCESS_TIME
@@ -110,13 +125,12 @@ function update() {
 
 
   if(counter >= 20){
-
     if(z == -50){
       console.log("ici")
       z = 1200
       CTX.drawImage(star,175,0,78,85,z,100,60,90)
     }
-    z-=1
+    z -=1
     CTX.drawImage(star,175,0,78,85,z,100,60,90)
     if(counter == 20){
       num = randInt(1,3)
@@ -162,8 +176,9 @@ function update() {
     }
 
     if(counter >= 435 && y <= 0 && x <= 0){
-      // z-=1
       // CTX.drawImage(star,175,0,78,85,z,100,60,90)
+      // z -= 1
+      // console.log(z)
       console.log("heeeee")
       y = 1200
       counter = 0
@@ -171,11 +186,22 @@ function update() {
     }
   }
 
-CTX.drawImage(star,175,0,78,85,z,100,60,90)
+CTX.drawImage(star,175,0,78,85,z-1,100,60,90)
   
   // Draw our hero
+ if(end == 1){
+  console.log("yayyy")
+  cancelAnimationFrame(animationFrameID)
+  x = 1200
+  y = 1200
+  z = 1200
+  counter = 0
+  animationFrameID = requestAnimationFrame(update)
+  end = 0
+ }
   HERO.update();
-  }
+
+}
 
 // Start the animation
 update()

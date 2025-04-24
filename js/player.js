@@ -11,6 +11,7 @@
 import { CTX, CANVAS, GRAVITY, FLOOR, dino1,dino2,dino3} from "./globals.js"
 let counter = 0
 let letter = ""
+
 export default class Player {
   constructor(image,x, y, width, height) {
     this.width = width;
