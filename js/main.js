@@ -33,6 +33,7 @@ ground2.x_pos = 1200
 let x = 1200
 let y = 1200
 let z = 1200
+let u = 2200
 let end = 0
 let score = 0
 let hs = 0
@@ -139,7 +140,14 @@ function update() {
       z = 1200
       CTX.drawImage(star,175,0,78,85,z,100,60,90)
     }
+
+    if(u == -50){
+      u = 2200
+      CTX.drawImage(star,175,0,78,85,u,100,60,90)
+    }
     z -=1
+    u-=1
+    CTX.drawImage(star,175,0,78,85,u,100,60,90)
     CTX.drawImage(star,175,0,78,85,z,100,60,90)
     if(counter == 20){
       num = randInt(1,3)
@@ -163,6 +171,7 @@ function update() {
     rannn = randInt(150,185)
     console.log(rannn)
     CTX.drawImage(star,175,0,78,85,z,100,60,90)
+    CTX.drawImage(star,175,0,78,85,u,100,60,90)
   }
   if(counter >= rannn){
     //if counter is bigger or 150
@@ -197,6 +206,7 @@ function update() {
   // CTX.drawImage(dino1,2202,0,122,95,100,100,95,95)
   // CTX.drawImage(dino1,2324,0,122,95,100,100,95,95)
 CTX.drawImage(star,175,0,78,85,z-1,100,60,90)
+CTX.drawImage(star,175,0,78,85,u,100,60,90)
 
 CTX.font = "25px serif";
 CTX.fillStyle = "white"
