@@ -20,7 +20,7 @@ function randInt(min, max) {
 }
 
 
-// Globals
+// Globals (I didn't need to make this many different images, could have used to same source for every one)
 const HERO = new Player(dino1,25, 230,95,95);
 // (dino1,1670,0,95,95,-5,230,95,95)
 let ground = new Image();
@@ -194,7 +194,8 @@ function update() {
       x = 1200
     }
   }
-
+  // CTX.drawImage(dino1,2202,0,122,95,100,100,95,95)
+  // CTX.drawImage(dino1,2324,0,122,95,100,100,95,95)
 CTX.drawImage(star,175,0,78,85,z-1,100,60,90)
 
 CTX.font = "25px serif";
@@ -238,9 +239,9 @@ if(counter == 0){
     CTX.drawImage(ground,10,102,2300,23,5,300,2300,23)
     CTX.drawImage(dino3,1943,0,86,95,25,235,95,95)
     CTX.font = "25px serif";
-CTX.fillStyle = "white"
-CTX.fillText("HIGH SCORE", 850,35);
-CTX.fillText(hs,1020,35);
+    CTX.fillStyle = "white"
+    CTX.fillText("HIGH SCORE", 850,35);
+    CTX.fillText(hs,1020,35);
   };
 
 
